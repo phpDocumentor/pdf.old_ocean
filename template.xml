@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+  <author>Mike van Riel</author>
+  <version>1.0.0</version>
+  <description>Template used to output PDF documentation in the Old Ocean style.</description>
+  <dependencies>
+    <theme>old_ocean</theme>
+  </dependencies>
+  <transformations>
+    <transformation query="copy" writer="FileIo" source="ajax_search.php" artifact="ajax_search.php"/>
+    <transformation query="copy" writer="FileIo" source="js" artifact="js"/>
+    <transformation query="copy" writer="FileIo" source="images" artifact="images"/>
+    <transformation query="copy" writer="FileIo" source="templates/old_ocean/css" artifact="css"/>
+    <transformation query="copy" writer="FileIo" source="templates/old_ocean/images" artifact="images"/>
+    <transformation query="" writer="Search" source="" artifact="."/>
+    <transformation query="" writer="xsl" source="templates/old_ocean/preprocess/object-index.xsl" artifact="$object-index" />
+    <transformation query="" writer="xsl" source="templates/pdf_new_black/file.xsl" artifact="index.html">
+      <parameters><variables><title>File</title></variables></parameters>
+    </transformation>
+    <transformation query="" writer="pdf" source="index.html" artifact="apidocs.pdf" />
+  </transformations>
+</template>
